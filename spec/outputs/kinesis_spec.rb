@@ -12,7 +12,7 @@ describe LogStash::Outputs::Kinesis do
   }}
   let(:sample_event) { LogStash::Event.new }
 
-  KPL = com.amazonaws.services.kinesis.producer
+  KPL = com.amazonaws.kinesis.producer
 
   context "when receiving message" do
     it "sends record to Kinesis" do

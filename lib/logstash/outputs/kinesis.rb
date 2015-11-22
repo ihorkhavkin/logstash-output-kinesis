@@ -67,7 +67,7 @@ class LogStash::Outputs::Kinesis < LogStash::Outputs::Base
   config :temp_directory, :validate => :string, :default => nil
   config :verify_certificate, :validate => :boolean, :default => true
 
-  KPL = com.amazonaws.services.kinesis.producer
+  KPL = com.amazonaws.kinesis.producer
   AWSAuth = com.amazonaws.auth
   ByteBuffer = java.nio.ByteBuffer
 
@@ -116,7 +116,7 @@ class LogStash::Outputs::Kinesis < LogStash::Outputs::Base
   end
 
   def create_kpl_config
-    config = KPL.KinesisProducerConfiguration::new()
+    config = KPL.Configuration::new()
 
     credentials_provider = create_credentials_provider
     metrics_credentials_provider = create_metrics_credentials_provider
@@ -127,17 +127,17 @@ class LogStash::Outputs::Kinesis < LogStash::Outputs::Base
     config.setCollectionMaxCount(@collection_max_count)
     config.setCollectionMaxSize(@collection_max_size)
     config.setConnectTimeout(@connect_timeout)
-    config.setCredentialsProvider(credentials_provider)
-    config.setCredentialsRefreshDelay(@credentials_refresh_delay)
+#    config.setCredentialsProvider(credentials_provider)
+#    config.setCredentialsRefreshDelay(@credentials_refresh_delay)
     config.setCustomEndpoint(@custom_endpoint) if !@custom_endpoint.nil?
     config.setFailIfThrottled(@fail_if_throttled)
     config.setLogLevel(@log_level)
     config.setMaxConnections(@max_connections)
-    config.setMetricsCredentialsProvider(metrics_credentials_provider)
+#    config.setMetricsCredentialsProvider(metrics_credentials_provider)
     config.setMetricsGranularity(@metrics_granularity)
     config.setMetricsLevel(@metrics_level)
     config.setMetricsNamespace(@metrics_namespace)
-    config.setMetricsUploadDelay(@metrics_upload_delay)
+#    config.setMetricsUploadDelay(@metrics_upload_delay)
     config.setMinConnections(@min_connections)
     config.setNativeExecutable(@native_executable) if !@native_executable.nil?
     config.setPort(@port)
